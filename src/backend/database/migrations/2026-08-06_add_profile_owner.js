@@ -2,6 +2,8 @@
 
 module.exports = {
   async up(knex) {
+    if (!(await knex.schema.hasTable('profiles'))) return;
+    if (await knex.schema.hasColumn('profiles', 'owner_id')) return;
     // Check if column already exists to support idempotent runs
     const hasColumn = await knex.schema.hasColumn('profiles', 'owner_id');
     if (hasColumn) {
