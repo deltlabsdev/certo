@@ -30,7 +30,7 @@ const hasWindowScrolled = computed(() => {
 const isMobileMenuOpen = shallowRef(false)
 const mobileMenuRef = useTemplateRef('mobile-menu')
 
-onClickOutside(mobileMenuRef, () => isMobileMenuOpen.value = false)
+useClickOutside(mobileMenuRef, () => isMobileMenuOpen.value = false)
 
 watch(
   [isStoreReady, authStore],
