@@ -9,7 +9,19 @@ const isAuthenticated = ref(false)
 const authStore = ref<ReturnType<typeof useAuthStore> | null>(null)
 const userName = ref('')
 const WINDOW_VERTICAL_SCROLL_THRESHOLD = 20
-const { y } = useWindowScroll()
+// Plain scroll tracking - VueUse is not a direct dependency, so its
+// auto-imported useWindowScroll is not reliably available.
+const y = ref(0)
+const updateScrollY = () => {
+  y.value = window.scrollY
+}
+onMounted(() => {
+  updateScrollY()
+  window.addEventListener('scroll', updateScrollY, { passive: true })
+})
+onUnmounted(() => {
+  window.removeEventListener('scroll', updateScrollY)
+})
 
 const hasWindowScrolled = computed(() => {
   return y.value > WINDOW_VERTICAL_SCROLL_THRESHOLD
