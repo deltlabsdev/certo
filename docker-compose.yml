@@ -39,6 +39,7 @@ services:
       SMTP_PORT: ${SMTP_PORT:-587}
       FRONTEND_URL: ${FRONTEND_URL:?}   # e.g. https://badges.example.com
       PUBLIC_URL: ${PUBLIC_URL:?}       # e.g. https://api.badges.example.com
+      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-}
     volumes:
       - uploads-data:/app/public/uploads
 
