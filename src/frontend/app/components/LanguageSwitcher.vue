@@ -12,7 +12,7 @@ const currentLocale = computed(() =>
 const isOpen = ref(false)
 const dropdownRef = ref<HTMLElement | null>(null)
 
-onClickOutside(dropdownRef, () => { isOpen.value = false })
+useClickOutside(dropdownRef, () => { isOpen.value = false })
 </script>
 
 <template>
